@@ -1,0 +1,117 @@
+body{
+
+margin:0;
+font-family:Arial;
+background:linear-gradient(135deg,#0f172a,#1e293b);
+color:white;
+
+}
+
+.container{
+
+max-width:900px;
+margin:auto;
+padding:20px;
+
+}
+
+.header{
+
+text-align:center;
+margin-bottom:30px;
+
+}
+
+.header h1{
+
+font-size:40px;
+margin:0;
+
+}
+
+.header p{
+
+color:#cbd5f5;
+
+}
+
+.upload-section{
+
+text-align:center;
+margin-bottom:20px;
+
+}
+
+.upload-btn{
+
+background:#2563eb;
+padding:12px 25px;
+border-radius:8px;
+cursor:pointer;
+
+}
+
+.preview-box{
+
+height:400px;
+background:#0f172a;
+border:2px dashed #475569;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:12px;
+overflow:hidden;
+
+}
+
+.preview-box img{
+
+max-height:100%;
+
+}
+
+.shirts-title{
+
+margin-top:30px;
+margin-bottom:10px;
+font-weight:bold;
+
+}
+
+.shirts-grid{
+
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(120px,1fr));
+gap:15px;
+
+}
+
+.shirts-grid img{
+
+width:100%;
+border-radius:8px;
+cursor:pointer;
+border:2px solid transparent;
+
+}
+
+.shirts-grid img.selected{
+
+border:2px solid #3b82f6;
+
+}
+
+#generateBtn{
+
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+padding:15px 30px;
+background:#22c55e;
+border:none;
+border-radius:30px;
+font-size:16px;
+display:none;
+
+}

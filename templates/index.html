@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>FashionVistar Virtual Try-On</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-gray-100">
+
+<div class="max-w-6xl mx-auto p-10">
+
+<h1 class="text-4xl font-bold text-center mb-10">
+FashionVistar Virtual Try-On
+</h1>
+
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+<div onclick="selectShirt('shirt1')" class="cursor-pointer bg-white p-4 rounded-xl shadow hover:shadow-xl">
+<img src="https://i.imgur.com/9QO8Z6F.png">
+<p class="text-center mt-2">Black Shirt</p>
+</div>
+
+<div onclick="selectShirt('shirt2')" class="cursor-pointer bg-white p-4 rounded-xl shadow hover:shadow-xl">
+<img src="https://i.imgur.com/xR3KJ7M.png">
+<p class="text-center mt-2">White Shirt</p>
+</div>
+
+<div onclick="selectShirt('shirt3')" class="cursor-pointer bg-white p-4 rounded-xl shadow hover:shadow-xl">
+<img src="https://i.imgur.com/w1B6XkH.png">
+<p class="text-center mt-2">Blue Shirt</p>
+</div>
+
+<div onclick="selectShirt('shirt4')" class="cursor-pointer bg-white p-4 rounded-xl shadow hover:shadow-xl">
+<img src="https://i.imgur.com/m3K8p4F.png">
+<p class="text-center mt-2">Red Shirt</p>
+</div>
+
+</div>
+
+</div>
+
+<div id="tryon" class="hidden max-w-4xl mx-auto p-10">
+
+<h2 class="text-3xl font-bold mb-6">Virtual Try-On</h2>
+
+<div class="grid md:grid-cols-2 gap-8">
+
+<div>
+
+<h3 class="font-semibold mb-2">Selected Shirt</h3>
+
+<img id="shirtPreview" class="rounded-xl shadow">
+
+</div>
+
+<div>
+
+<h3 class="font-semibold mb-2">Upload Your Photo</h3>
+
+<input type="file" id="photo" class="mb-4">
+
+<button onclick="generate()" 
+class="bg-black text-white px-6 py-3 rounded-lg w-full">
+
+Try On
+
+</button>
+
+<div id="loading" class="hidden mt-4">
+Generating AI Try-On...
+</div>
+
+</div>
+
+</div>
+
+<div class="mt-10">
+
+<h3 class="font-semibold mb-3">Result</h3>
+
+<img id="result" class="rounded-xl shadow">
+
+</div>
+
+</div>
+
+<script>
+
+let selectedShirt = ""
+
+function selectShirt(shirt){
+
+selectedShirt = shirt
+
+document.getElementById("tryon").classList.remove("hidden")
+
+document.getElementById("shirtPreview").src =
+"https://dummyimage.com/400x400/cccccc/000000&text="+shirt
+
+window.scrollTo({
+top:600,
+behavior:"smooth"
+})
+
+}
+
+function generate(){
+
+document.getElementById("loading").classList.remove("hidden")
+
+setTimeout(()=>{
+
+document.getElementById("loading").classList.add("hidden")
+
+document.getElementById("result").src =
+"https://dummyimage.com/500x600/000/fff&text=AI+Result"
+
+},2000)
+
+}
+
+</script>
+
+</body>
+</html>

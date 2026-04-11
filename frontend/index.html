@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+
+<title>FashionVistar</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+
+<h1>FashionVistar</h1>
+<p>AI Powered Virtual Try-On</p>
+
+</div>
+
+<div class="upload-section">
+
+<label class="upload-btn">
+
+Upload Photo <input type="file" id="photoInput" hidden>
+
+</label>
+
+</div>
+
+<div class="preview-box">
+
+<img id="userImage">
+
+</div>
+
+<div class="shirts-title">
+Select Your Shirt
+</div>
+
+<div class="shirts-grid">
+
+<img src="assets/shirts/shirt1.jpg" onclick="selectShirt(this)">
+<img src="assets/shirts/shirt2.jpg" onclick="selectShirt(this)">
+<img src="assets/shirts/shirt3.jpg" onclick="selectShirt(this)">
+<img src="assets/shirts/shirt4.jpg" onclick="selectShirt(this)">
+<img src="assets/shirts/shirt5.jpg" onclick="selectShirt(this)">
+<img src="assets/shirts/shirt6.jpg" onclick="selectShirt(this)">
+<img src="assets/shirts/shirt7.jpg" onclick="selectShirt(this)">
+</div>
+
+<button id="generateBtn" onclick="generateTryOn()">
+
+Generate Virtual Try-On
+
+</button>
+
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+</html>
