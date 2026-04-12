@@ -2,28 +2,68 @@
 
 echo "UPLOAD STARTED<br>";
 
-if ($_FILES) {
-    echo "FILE RECEIVED<br>";
-} else {
+// Check file
+if (!isset($_FILES['image'])) {
     echo "NO FILE RECEIVED<br>";
+    exit;
 }
 
+echo "FILE RECEIVED<br>";
+
+// Create uploads folder path
+$uploadDir = __DIR__ . "/uploads/";
+
+// Create folder if not exists
+if (!file_exists($uploadDir)) {
+    mkdir($uploadDir, 0777, true);
+}
+
+// Save file
+$filename = basename($_FILES["image"]["name"]);
+$target = $uploadDir . $filename;
+
+if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
+    echo "FILE MOVE FAILED<br>";
+    exit;
+}
+
+echo "FILE SAVED<br>";
+
+// Get shirt value
+$shirt = isset($_POST['shirt']) ? $_POST['shirt'] : "";
+
+if (!$shirt) {
+    echo "NO SHIRT SELECTED<br>";
+    exit;
+}
+
+echo "SHIRT: " . $shirt . "<br>";
+
+// 🔴 REPLACE WITH YOUR REAL NGROK URL
 $ngrok_url = "https://lustiness-patriarch-figure.ngrok-free.dev/tryon";
 
-echo "CALLING NGROK...<br>";
-
+// Init curl
 $ch = curl_init();
 
+// Prepare POST data
+$data = [
+    'person' => new CURLFile($target),
+    'shirt' => $shirt
+];
+
+// Curl config
 curl_setopt($ch, CURLOPT_URL, $ngrok_url);
 curl_setopt($ch, CURLOPT_POST, true);
+curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
+// Execute
 $response = curl_exec($ch);
 
 if ($response === false) {
     echo "CURL ERROR: " . curl_error($ch);
 } else {
-    echo "RESPONSE FROM NGROK:<br>";
+    echo "RESPONSE:<br>";
     echo $response;
 }
 
