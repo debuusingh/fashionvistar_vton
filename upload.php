@@ -39,7 +39,7 @@ if (!$shirt) {
 
 echo "SHIRT: " . $shirt . "<br>";
 
-// 🔴 REPLACE WITH YOUR REAL NGROK URL
+// REPLACE WITH YOUR REAL NGROK URL
 $ngrok_url = "https://lustiness-patriarch-figure.ngrok-free.dev/tryon";
 
 // Init curl
@@ -57,16 +57,26 @@ curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
-// Execute
 $response = curl_exec($ch);
 
 if ($response === false) {
     echo "CURL ERROR: " . curl_error($ch);
-} else {
-    echo "RESPONSE:<br>";
-    echo $response;
+    exit;
 }
 
 curl_close($ch);
+
+// SAVE IMAGE FROM BACKEND
+$resultDir = __DIR__ . "/results/";
+$filename = "result.png";
+$resultPath = $resultDir . $filename;
+
+//echo $resultPath
+
+file_put_contents($resultPath, $response);
+
+// DISPLAY IMAGE
+echo "<h2>Generated Result:</h2>";
+echo "<img src='results/$filename' width='300' />";
 
 ?>
