@@ -1,68 +1,358 @@
 <!DOCTYPE html>
-
 <html>
+
 <head>
 
-<title>FashionVistar</title>
+    <title>FashionVistar</title>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style.css">
 
 </head>
 
 <body>
 
-<div class="container">
+    <div class="container">
 
-<div class="header">
+        <div class="header">
 
-<h1>FashionVistar</h1>
-<p>AI Powered Virtual Try-On</p>
-<p>wait <b><u>90</u></b> seconds to see new generated image</p>
+            <h1>FashionVistar</h1>
+            <p>AI Powered Virtual Try-On</p>
 
-</div>
+        </div>
 
-<div class="upload-section">
 
-<label class="upload-btn">
+        <div class="upload-section">
 
-Upload Photo <input type="file" id="photoInput" hidden>
+            <label class="upload-btn">
 
-</label>
+                Upload Photo
+                <input type="file" id="photoInput" hidden>
 
-</div>
+            </label>
 
-<div class="preview-box">
+        </div>
 
-<img id="userImage" src="assets/person/elon-musk.jpg" width="300">
 
-</div>
 
-<div class="shirts-title">
-Select Your Shirt
-</div>
+        <!-- Preview Box -->
 
-<div class="shirts-grid">
+        <div class="preview-box">
 
-<img src="assets/shirts/shirt1.jpg" onclick="selectShirt(this)">
-<img src="assets/shirts/shirt2.jpg" onclick="selectShirt(this)">
-<img src="assets/shirts/shirt3.jpg" onclick="selectShirt(this)">
-<img src="assets/shirts/shirt4.jpg" onclick="selectShirt(this)">
-<img src="assets/shirts/shirt5.jpg" onclick="selectShirt(this)">
-<img src="assets/shirts/shirt6.jpg" onclick="selectShirt(this)">
-<img src="assets/shirts/shirt7.jpg" onclick="selectShirt(this)">
-</div>
+            <img id="userImage" src="assets/person/elon-musk.jpg" width="300">
 
-<button id="generateBtn" onclick="generateTryOn()">
 
-Generate Virtual Try-On
 
-</button>
+            <!-- LOADER -->
 
-</div>
+            <div id="loaderBox" class="loader-box">
 
-<script src="js/app.js"></script>
+                <!-- TOP STATUS -->
+
+                <div class="loader-top">
+
+                    <h2 id="statusText">
+
+                        Preparing your outfit...
+
+                    </h2>
+
+                    <div class="progress-bar">
+
+                        <div id="progressFill" class="progress-fill">
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- SLIDES -->
+
+                <div class="slides-container">
+
+                    <!-- Problem 1 -->
+                
+                    <div class="slide active">
+                
+                        <h3>PROBLEM: SIZE NOT FIT</h3>
+                
+                        <p>
+                
+                            Shirt looks good online<br>
+                            But when it comes,<br>
+                            <b>size is tight or loose</b>
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Solution 1 -->
+                
+                    <div class="slide">
+                
+                        <h3>FASHIONVISTAR SOLUTION</h3>
+                
+                        <p>
+                
+                            Upload your photo<br>
+                            FashionVistar shows<br>
+                            <b>how shirt fits on YOU</b>
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Problem 2 -->
+                
+                    <div class="slide">
+                
+                        <h3>PROBLEM: RETURN TAKES TIME</h3>
+                
+                        <p>
+                
+                            Wrong size comes<br>
+                            You return item<br>
+                            Wait many days.
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Solution 2 -->
+                
+                    <div class="slide">
+                
+                        <h3>FASHIONVISTAR SAVES TIME</h3>
+                
+                        <p>
+                
+                            See fitting first<br>
+                            On FashionVistar<br>
+                            <b>Buy correct size once</b>
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Problem 3 -->
+                
+                    <div class="slide">
+                
+                        <h3>PROBLEM: MODEL BODY DIFFERENT</h3>
+                
+                        <p>
+                
+                            Model body is different<br>
+                            Your body is different<br>
+                            Shirt looks different.
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Solution 3 -->
+                
+                    <div class="slide">
+                
+                        <h3>FASHIONVISTAR SHOWS YOUR LOOK</h3>
+                
+                        <p>
+                
+                            Not model photo<br>
+                            FashionVistar shows<br>
+                            <b>shirt on your body</b>
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Problem 4 -->
+                
+                    <div class="slide">
+                
+                        <h3>PROBLEM: BUYING IS GUESS</h3>
+                
+                        <p>
+                
+                            You guess size<br>
+                            Guess fitting<br>
+                            Hope it looks good.
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Solution 4 -->
+                
+                    <div class="slide">
+                
+                        <h3>FASHIONVISTAR REMOVES GUESS</h3>
+                
+                        <p>
+                
+                            See preview first<br>
+                            On FashionVistar<br>
+                            <b>Then buy with confidence</b>
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Problem 5 -->
+                
+                    <div class="slide">
+                
+                        <h3>PROBLEM: STYLE NOT SUIT</h3>
+                
+                        <p>
+                
+                            Shirt fits well<br>
+                            But style not good<br>
+                            On your face.
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Solution 5 -->
+                
+                    <div class="slide">
+                
+                        <h3>FASHIONVISTAR SHOWS STYLE</h3>
+                
+                        <p>
+                
+                            Try many shirts<br>
+                            On FashionVistar<br>
+                            <b>Choose best style</b>
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Problem 6 -->
+                
+                    <div class="slide">
+                
+                        <h3>PROBLEM: MONEY WASTE</h3>
+                
+                        <p>
+                
+                            Wrong clothes buy<br>
+                            Return again<br>
+                            Money and time waste.
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Solution 6 -->
+                
+                    <div class="slide">
+                
+                        <h3>FASHIONVISTAR SAVES MONEY</h3>
+                
+                        <p>
+                
+                            See before buying<br>
+                            On FashionVistar<br>
+                            <b>Less wrong purchase</b>
+                
+                        </p>
+                
+                    </div>
+                
+                
+                
+                    <!-- Final -->
+                
+                    <div class="slide">
+                
+                        <h3>ALMOST READY</h3>
+                
+                        <p>
+                
+                            FashionVistar is<br>
+                            creating your look<br>
+                            Please wait...
+                
+                        </p>
+                
+                    </div>
+                
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="shirts-title">
+
+            Select Your Shirt
+
+        </div>
+
+
+
+        <div class="shirts-grid">
+
+            <img src="assets/shirts/shirt1.jpg" onclick="selectShirt(this)">
+
+            <img src="assets/shirts/shirt2.jpg" onclick="selectShirt(this)">
+
+            <img src="assets/shirts/shirt3.jpg" onclick="selectShirt(this)">
+
+            <img src="assets/shirts/shirt4.jpg" onclick="selectShirt(this)">
+
+            <img src="assets/shirts/shirt5.jpg" onclick="selectShirt(this)">
+
+            <img src="assets/shirts/shirt6.jpg" onclick="selectShirt(this)">
+
+            <img src="assets/shirts/shirt7.jpg" onclick="selectShirt(this)">
+
+        </div>
+
+
+
+        <button id="generateBtn" onclick="generateTryOn()">
+
+            Generate Virtual Try-On
+
+        </button>
+
+    </div>
+
+
+    <script src="js/app.js"></script>
 
 </body>
+
 </html>
