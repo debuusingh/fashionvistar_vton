@@ -1,82 +1,93 @@
 <?php
 
-echo "UPLOAD STARTED<br>";
+ini_set('max_execution_time', 300);
 
 // Check file
 if (!isset($_FILES['image'])) {
-    echo "NO FILE RECEIVED<br>";
+    echo "NO_FILE";
     exit;
 }
 
-echo "FILE RECEIVED<br>";
-
-// Create uploads folder path
+// Upload folder
 $uploadDir = __DIR__ . "/uploads/";
 
-// Create folder if not exists
 if (!file_exists($uploadDir)) {
     mkdir($uploadDir, 0777, true);
 }
 
-// Save file
+// Save uploaded file
 $filename = basename($_FILES["image"]["name"]);
 $target = $uploadDir . $filename;
 
 if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target)) {
-    echo "FILE MOVE FAILED<br>";
+    echo "UPLOAD_FAILED";
     exit;
 }
 
-echo "FILE SAVED<br>";
-
-// Get shirt value
+// Get shirt
 $shirt = isset($_POST['shirt']) ? $_POST['shirt'] : "";
 
+
 if (!$shirt) {
-    echo "NO SHIRT SELECTED<br>";
+    echo "NO_SHIRT";
     exit;
 }
 
-echo "SHIRT: " . $shirt . "<br>";
+echo $_POST;
+$gender = isset($_POST['gender']) ? $_POST['gender'] : "male";
 
-// REPLACE WITH YOUR REAL NGROK URL
+if ($gender == "female") {
+    $clothPath = __DIR__ . "/assets/women/" . $shirt;
+}
+else {
+    $clothPath = __DIR__ . "/assets/man/" . $shirt;
+}
+
+// Check cloth exists
+if (!file_exists($clothPath)) {
+    echo "CLOTH_NOT_FOUND";
+    exit;
+}
+
+// 🔴 Your ngrok URL
 $ngrok_url = "https://lustiness-patriarch-figure.ngrok-free.dev/tryon";
 
-// Init curl
+// CURL call
 $ch = curl_init();
 
-// Prepare POST data
 $data = [
     'person' => new CURLFile($target),
-    'shirt' => $shirt
+    'shirt' => $shirt,
+    'gender' => $gender
 ];
 
-// Curl config
 curl_setopt($ch, CURLOPT_URL, $ngrok_url);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+//curl_setopt($ch, CURLOPT_TIMEOUT, 300);
 
 $response = curl_exec($ch);
 
 if ($response === false) {
-    echo "CURL ERROR: " . curl_error($ch);
+    echo "CURL_ERROR";
     exit;
 }
 
-curl_close($ch);
+//curl_close($ch);
 
-// SAVE IMAGE FROM BACKEND
+// Save result
 $resultDir = __DIR__ . "/results/";
-$filename = "result.png";
-$resultPath = $resultDir . $filename;
 
-//echo $resultPath
+if (!file_exists($resultDir)) {
+    mkdir($resultDir, 0777, true);
+}
+
+$resultPath = $resultDir . "result.png";
 
 file_put_contents($resultPath, $response);
 
-// DISPLAY IMAGE
-echo "<h2>Generated Result:</h2>";
-echo "<img src='results/$filename' width='300' />";
+// 🔥 Return simple response
+echo "OK";
 
 ?>

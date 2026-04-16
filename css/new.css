@@ -1,0 +1,54 @@
+:root {
+    --vton-purple: #9e2166; /* #a832ff Adjust to match your exact purple shade */
+}
+
+/* Photo Upload Click Area */
+.profile-upload-area {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    border-radius: 15px;
+    overflow: hidden;
+}
+.upload-overlay {
+    position: absolute;
+    bottom: 0; width: 100%;
+    background: rgba(0,0,0,0.5);
+    color: white; padding: 5px;
+    font-size: 12px; opacity: 0;
+    transition: 0.3s;
+}
+.profile-upload-area:hover .upload-overlay { opacity: 1; }
+
+/* Toggle Container */
+.toggle-wrapper {
+    display: flex; justify-content: center; margin: 30px 0;
+}
+.toggle-container {
+    width: 260px; height: 60px;
+    background-color: var(--vton-purple);
+    border-radius: 50px;
+    display: flex; align-items: center;
+    position: relative; cursor: pointer;
+    padding: 0 5px;
+}
+/* The White Sliding Pill */
+.toggle-slider {
+    position: absolute;
+    width: 125px; height: 50px;
+    background: white;
+    border-radius: 40px;
+    transition: transform 0.3s ease;
+    z-index: 1;
+}
+/* Text Handling */
+.toggle-text {
+    flex: 1; text-align: center;
+    z-index: 2; font-family: sans-serif;
+    font-weight: 600; font-size: 18px;
+    color: white; transition: 0.3s;
+}
+/* Selected Text Color */
+.toggle-text.active {
+    color: var(--vton-purple);
+}

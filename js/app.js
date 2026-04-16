@@ -3,6 +3,8 @@ let selectedShirt = null;
 const photoInput =
     document.getElementById("photoInput");
 
+const previewBox = document.querySelector(".preview-box");
+
 const userImage =
     document.getElementById("userImage");
 
@@ -18,12 +20,55 @@ const slides =
 const statusText =
     document.getElementById("statusText");
 
-const progressFill =
-    document.getElementById("progressFill");
+const progressFill = document.getElementById("progressFill");
 
+let isWomen = false;
+
+function toggleGender() {
+    isWomen = !isWomen;
+
+    
+    const slider = document.getElementById('toggleSlider');
+    const textMan = document.getElementById('textMan');
+    const textWomen = document.getElementById('textWomen');
+    const menGrid = document.getElementById('menGrid');
+    const womenGrid = document.getElementById('womenGrid');
+
+    if (isWomen) {
+        slider.style.transform = 'translateX(125px)';
+        textWomen.classList.add('active');
+        textMan.classList.remove('active');
+        menGrid.style.display = 'none';
+        womenGrid.style.display = 'block';
+
+        userImage.src = "assets/person/default_girl.jpg"
+    } else {
+        slider.style.transform = 'translateX(0px)';
+        textMan.classList.add('active');
+        textWomen.classList.remove('active');
+        menGrid.style.display = 'block';
+        womenGrid.style.display = 'none';
+
+        userImage.src = "assets/person/elon-musk.jpg"
+    }
+
+    // Reset selection on toggle
+    selectedShirt = null;
+    // photoInput.value = ""; // Clears the uploaded file so it resets to default
+    document.getElementById('generateBtn').style.display = 'none';
+    document.querySelectorAll('.shirts-grid img').forEach(i => i.classList.remove('selected'));
+}
+
+// Keep your existing selectShirt and generateTryOn functions below this
+    
 
 
 /* Upload Preview */
+
+previewBox.addEventListener("click", () => {
+    photoInput.click();
+});
+
 
 photoInput.addEventListener(
     "change",
@@ -177,14 +222,10 @@ function startStatus() {
 async function generateTryOn() {
 
     const file = photoInput.files[0];
-
-    if (!file) {
-        alert("Upload photo");
-        return;
-    }
+    const currentImageUrl = userImage.src;
 
     if (!selectedShirt) {
-        alert("Select shirt");
+        alert("Please select a shirt first!");
         return;
     }
 
@@ -194,101 +235,41 @@ async function generateTryOn() {
     showLoader();
 
     const form = new FormData();
-    form.append("image", file);
+    
+    // Check: If user uploaded a file, send the file. 
+    // Otherwise, send the path of the default image.
+    if (file) {
+        form.append("image", file);
+    } else {
+        // Sending the filename of the default photo (elon-musk.jpg or default_girl.jpg)
+        const defaultFileName = currentImageUrl.split('/').pop();
+        form.append("default_image", defaultFileName);
+        console.log("Using default image:", defaultFileName);
+    }
+
     form.append("shirt", selectedShirt);
+    form.append("gender", isWomen ? "female" : "male");
 
     try {
-
         const response = await fetch("upload.php", {
             method: "POST",
             body: form
         });
 
         const result = await response.text();
-
         console.log(result);
 
-        // 🔥 Stop loader immediately when response comes
         hideLoader();
 
-        // 🔥 Show new image instantly
-        userImage.src =
-            "results/result.png?t=" +
-            new Date().getTime();
-
+        // Show new image instantly
+        userImage.src = "results/result.png?t=" + new Date().getTime();
     }
     catch (error) {
-
         console.error(error);
-
         hideLoader();
-
         alert("Error generating image");
-
-    }
-
-    generateBtn.innerText =
-        "Generate Virtual Try-On";
-
-    generateBtn.disabled = false;
-}
-    generateBtn.style.display = "block";
-
-}
-
-
-// Generate Try-On
-async function generateTryOn() {
-
-    const file = photoInput.files[0];
-
-    if (!file) {
-        alert("Please upload a photo");
-        return;
-    }
-
-    if (!selectedShirt) {
-        alert("Please select a shirt");
-        return;
-    }
-
-    generateBtn.innerText = "Generating...";
-    generateBtn.disabled = true;
-
-    // Create form data
-    const form = new FormData();
-
-    // VERY IMPORTANT — names must match upload.php
-    form.append("image", file);
-    form.append("shirt", selectedShirt);
-
-    try {
-
-        const response = await fetch("upload.php", {
-            method: "POST",
-            body: form
-        });
-
-        const result = await response.text();
-
-        console.log("Server Response:", result);
-
-        // If success, reload output image
-        if (result.includes("SUCCESS") || result.includes("result.png")) {
-
-            userImage.src =
-                "results/result.png?t=" + new Date().getTime();
-        }
-
-    }
-    catch (error) {
-
-        console.error(error);
-        alert("Error generating image");
-
     }
 
     generateBtn.innerText = "Generate Virtual Try-On";
     generateBtn.disabled = false;
-
 }

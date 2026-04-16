@@ -1,3 +1,5 @@
+
+
 body{
 
     margin:0;
@@ -82,7 +84,7 @@ body{
     /* Image Preview */
     
     .preview-box{
-    
+    cursor: pointer;
     height:400px;
     
     background:#0f172a;
@@ -384,3 +386,5 @@ body{
     line-height:1.5;
     
     }
+
+    

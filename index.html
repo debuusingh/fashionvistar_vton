@@ -8,6 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/new.css">
+    <!-- <script src="js/app.js" defer></script> -->
 
 </head>
 
@@ -23,7 +25,7 @@
         </div>
 
 
-        <div class="upload-section">
+        <!-- <div class="upload-section">
 
             <label class="upload-btn">
 
@@ -32,7 +34,17 @@
 
             </label>
 
+        </div> -->
+
+        <!-- NEW: Gender Toggle Switch -->
+        <div class="toggle-wrapper">
+            <div class="toggle-container" onclick="toggleGender()">
+                <div id="toggleSlider" class="toggle-slider"></div>
+                <div id="textMan" class="toggle-text active">Man</div>
+                <div id="textWomen" class="toggle-text">Women</div>
+            </div>
         </div>
+        
 
 
 
@@ -41,7 +53,7 @@
         <div class="preview-box">
 
             <img id="userImage" src="assets/person/elon-musk.jpg" width="300">
-
+            <input type="file" id="photoInput" hidden>
 
 
             <!-- LOADER -->
@@ -313,34 +325,37 @@
         </div>
 
 
-
-        <div class="shirts-title">
-
-            Select Your Shirt
-
+        <!-- Men's Grid (Default) -->
+        <div id="menGrid" class="shirts-section">
+            <div class="shirts-title">Select Men's Shirt</div>
+            <div class="shirts-grid">
+                <img src="assets/man/shirt1.jpg" onclick="selectShirt(this)">
+                <img src="assets/man/shirt2.jpg" onclick="selectShirt(this)">
+                <img src="assets/man/shirt3.jpg" onclick="selectShirt(this)">
+                <img src="assets/man/shirt4.jpg" onclick="selectShirt(this)">
+                <img src="assets/man/shirt5.jpg" onclick="selectShirt(this)">
+                <img src="assets/man/shirt6.jpg" onclick="selectShirt(this)">
+                <img src="assets/man/shirt7.jpg" onclick="selectShirt(this)">
+            </div>
         </div>
 
-
-
-        <div class="shirts-grid">
-
-            <img src="assets/shirts/shirt1.jpg" onclick="selectShirt(this)">
-
-            <img src="assets/shirts/shirt2.jpg" onclick="selectShirt(this)">
-
-            <img src="assets/shirts/shirt3.jpg" onclick="selectShirt(this)">
-
-            <img src="assets/shirts/shirt4.jpg" onclick="selectShirt(this)">
-
-            <img src="assets/shirts/shirt5.jpg" onclick="selectShirt(this)">
-
-            <img src="assets/shirts/shirt6.jpg" onclick="selectShirt(this)">
-
-            <img src="assets/shirts/shirt7.jpg" onclick="selectShirt(this)">
-
+        <!-- Women's Grid (Hidden by default) -->
+        <div id="womenGrid" class="shirts-section" style="display: none;">
+            <div class="shirts-title">Select Women's Outfit</div>
+            <div class="shirts-grid">
+                <img src="assets/women/dress1.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress2.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress3.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress4.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress5.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress6.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress7.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress8.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress9.jpg" onclick="selectShirt(this)">
+                <img src="assets/women/dress10.jpg" onclick="selectShirt(this)">
+            </div>
         </div>
-
-
+        
 
         <button id="generateBtn" onclick="generateTryOn()">
 
