@@ -1,67 +1,11 @@
-/*
 
-:root {
-    --vton-purple: #9e2166; 
-}
-
-
-.profile-upload-area {
-    position: relative;
-    display: inline-block;
-    cursor: pointer;
-    border-radius: 15px;
-    overflow: hidden;
-}
-.upload-overlay {
-    position: absolute;
-    bottom: 0; width: 100%;
-    background: rgba(0,0,0,0.5);
-    color: white; padding: 5px;
-    font-size: 12px; opacity: 0;
-    transition: 0.3s;
-}
-.profile-upload-area:hover .upload-overlay { opacity: 1; }
-
-
-.toggle-wrapper {
-    display: flex; justify-content: center; margin: 30px 0;
-}
-.toggle-container {
-    width: 260px; height: 60px;
-    background-color: var(--vton-purple);
-    border-radius: 50px;
-    display: flex; align-items: center;
-    position: relative; cursor: pointer;
-    padding: 0 5px;
-}
-
-.toggle-slider {
-    position: absolute;
-    width: 125px; height: 50px;
-    background: white;
-    border-radius: 40px;
-    transition: transform 0.3s ease;
-    z-index: 1;
-}
-
-.toggle-text {
-    flex: 1; text-align: center;
-    z-index: 2; font-family: sans-serif;
-    font-weight: 600; font-size: 18px;
-    color: white; transition: 0.3s;
-}
-
-
-.toggle-text.active {
-    color: var(--vton-purple);
-}
 
 */
 :root {
     --vton-purple: #9e2166;
 }
 
-/* ── Photo Upload Click Area ── */
+/* â”€â”€ Photo Upload Click Area â”€â”€ */
 .profile-upload-area {
     position: relative;
     display: inline-block;
@@ -79,7 +23,7 @@
 }
 .profile-upload-area:hover .upload-overlay { opacity: 1; }
 
-/* ── Toggle ── */
+/* â”€â”€ Toggle â”€â”€ */
 .toggle-wrapper {
     display: flex; justify-content: center; margin: 30px 0;
 }
@@ -107,7 +51,7 @@
 }
 .toggle-text.active { color: var(--vton-purple); }
 
-/* ── Cloth Card Grid ── */
+/* â”€â”€ Cloth Card Grid â”€â”€ */
 .shirts-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -250,7 +194,7 @@
     fill: none; stroke: white; stroke-width: 2.5;
 }
 
-/* ── Wishlist FAB ── */
+/* â”€â”€ Wishlist FAB â”€â”€ */
 .wishlist-fab {
     position: fixed;
     top: 16px; right: 16px;
@@ -277,7 +221,7 @@
     font-weight: 700;
 }
 
-/* ── Drawer ── */
+/* â”€â”€ Drawer â”€â”€ */
 .drawer-overlay {
     position: fixed; inset: 0;
     background: rgba(0,0,0,0.55);
